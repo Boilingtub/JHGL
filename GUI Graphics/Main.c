@@ -1,29 +1,57 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "JHGL.h"
+#include "JHGL/JHGL.h"
 
+struct Player
+{
+ int x;
+ int y;
+ int width;
+};
+typedef struct Player Player;
+
+const int WindowWidth = 1000;
+const int WindowHeight = 1000;
+
+Player player = {.width = 30 , .x = WindowHeight /2 , .y = WindowHeight /2};
 
 int main()
 {
 printf("Main running for Skinnty-Download-Center ! \n"); 
-OpenX11Window(2 , 500 , 500 , 10 , 10);
+OpenX11Window(2 , WindowWidth , WindowHeight , 10 , 10);
 }
 
 
 void onWindowOpen()
 {
-  DrawLine(0x00ff00 , 50 , 0 , 50 , 200);
+        DrawArc(0x00ff00 , 0x0000ff , player.x , player.y , player.width , player.width , 0 , 360);
 }
 
 void onKeyPressed()
 {
-  if (GetKey(0x09) == true)
+  if (GetKey("Escape") == true)
     {
      Terminate();
     }
-
-   if(GetKey('1') == true)
-     {
-        DrawLine(0x0000ff , 0 , 50 , 200 , 50);
-     }
+   else
+    {
+      if(GetKey("w"))
+        {
+          player.y += 10;
+        }
+      if(GetKey("s"))
+        {
+          player.y -= 10;
+        }
+      if(GetKey("d"))
+        {
+          player.x -= 10;
+        }
+      if(GetKey("a"))
+        {
+          player.x += 10;
+        }               
+      DrawFillRect(0x000000 , 0 , 0 , WindowWidth , WindowHeight);          
+      DrawArc(0x00ff00 , 0x0000ff , player.x , player.y , player.width , player.width , 0 , 360);
+    }
 }

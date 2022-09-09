@@ -2,7 +2,7 @@
 
 #Configure
 ProjectDir='/home/hendrik/Coding-Projects/C/GUI Graphics'
-SrcFiles="Main.c JHGL.c"
+SrcFiles="Main.c JHGL/JHGL.c"
 Libraries='-L/usr/X11R6/lib -lX11'
 Exename='Main'
 
